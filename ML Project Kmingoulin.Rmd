@@ -2,12 +2,14 @@
 title: "ML Project"
 author: "konstantin mingoulin"
 date: "April 23, 2016"
-output: html_document
+output: pdf_document
 ---
 
-###Background: How well the participants perform weight-lifting exercises.Six participnts performed a varity of exaercise. Partcipants were supervised by an experienced trainer.Five classes (A - "correct" and 4 other) were identified based on common mistakes.
+###Background: 
+How well the participants perform weight-lifting exercises.Six participnts performed a varity of exaercise. Partcipants were supervised by an experienced trainer.Five classes (A - "correct" and 4 other) were identified based on common mistakes.
 
-###Objective: use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants and predict the correct the class of how they performed the exercise
+###Objective: 
+Use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants and predict the correct the class of how they performed the exercise
 
 ###Data:
 * Data for the project consisted of 2 files:
@@ -113,8 +115,8 @@ Accuracy Report:
 
 ```{r,echo=FALSE,echo=FALSE,warning=FALSE,message=FALSE}
 #temp partition for code validaton
-codeval<-createDataPartition(y=trainPC$classe, p=0.1, list=FALSE)
-trainPC<-trainPC[codeval,]
+#codeval<-createDataPartition(y=trainPC$classe, p=0.1, list=FALSE)
+#trainPC<-trainPC[codeval,]
 ########
 
 AccuracyListTest<-NULL
