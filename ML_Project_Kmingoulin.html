@@ -68,22 +68,24 @@ img {
 </div>
 
 
-<div id="background-how-well-the-participants-perform-weight-lifting-exercises.six-participnts-performed-a-varity-of-exaercise.-partcipants-were-supervised-by-an-experienced-trainer.five-classes-a---correct-and-4-other-were-identified-based-on-common-mistakes." class="section level3">
-<h3>Background: How well the participants perform weight-lifting exercises.Six participnts performed a varity of exaercise. Partcipants were supervised by an experienced trainer.Five classes (A - “correct” and 4 other) were identified based on common mistakes.</h3>
+<div id="background" class="section level3">
+<h3>Background:</h3>
+<p>How well the participants perform weight-lifting exercises. Six participnts performed a variety of exercises. Partcipants were supervised by an experienced trainer. Five classes (A - “correct” and 4 other) were identified based on common mistakes.</p>
 </div>
-<div id="objective-use-data-from-accelerometers-on-the-belt-forearm-arm-and-dumbell-of-6-participants-and-predict-the-correct-the-class-of-how-they-performed-the-exercise" class="section level3">
-<h3>Objective: use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants and predict the correct the class of how they performed the exercise</h3>
+<div id="objective" class="section level3">
+<h3>Objective:</h3>
+<p>Use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants and predict the correct the class of how they performed the exercise.</p>
 </div>
 <div id="data" class="section level3">
 <h3>Data:</h3>
 <ul>
 <li>Data for the project consisted of 2 files:
 <ul>
-<li>Main dataset (refered as training) will be used for training, validation and testing of the models</li>
-<li>Another dataset refered as “testing” and is used to evaluate the performance of the final model</li>
+<li>Main dataset (referred as training) will be used for training, validation and testing of the models</li>
+<li>Another dataset referred as “testing” and is used to evaluate the performance of the final model</li>
 </ul></li>
 </ul>
-<p>Distribution of classes (classe variable) in the main dataset:</p>
+<p>Distribution of classes (“classe”&quot; variable) in the main dataset:</p>
 <pre><code>## 
 ##    A    B    C    D    E 
 ## 5580 3797 3422 3216 3607</code></pre>
@@ -117,11 +119,11 @@ img {
 ## [52] &quot;magnet_forearm_z&quot;</code></pre>
 </div>
 <div id="partition-the-original-main-dataset-into-training-validation-and-testing" class="section level3">
-<h3>Partition the original Main dataset into training, validation and testing:</h3>
+<h3>Partition the original Main dataset into Training, Validation and Testing:</h3>
 <pre><code>##      [,1]       [,2]      [,3]        
 ## [1,] &quot;Training&quot; &quot;Testing&quot; &quot;Validation&quot;
 ## [2,] &quot;9619&quot;     &quot;4118&quot;    &quot;5885&quot;</code></pre>
-<p>Principle component analysis was performed on Training dataset. The preprocessing model was then applied to both Tesing and Validation datasets. The main reasoning behind the application of PCA is feature count reduction.</p>
+<p>Principle Component Analysis was performed on Training dataset. The pre-processing model was then applied to both Tesing and Validation datasets. The main reasoning behind the application of PCA is feature count reduction.</p>
 </div>
 <div id="model-selection-approach" class="section level3">
 <h3>Model selection approach:</h3>
@@ -138,15 +140,15 @@ img {
 <p>List of models:</p>
 <pre><code>## [1] &quot;rf&quot;        &quot;rpart&quot;     &quot;nb&quot;        &quot;lda&quot;       &quot;gbm&quot;       &quot;svmRadial&quot;</code></pre>
 <p>Accuracy Report:</p>
-<pre><code>## [1] &quot;rf&quot;
-## [1] &quot;rpart&quot;
-## [1] &quot;nb&quot;
-## [1] &quot;lda&quot;
-## [1] &quot;gbm&quot;
-## [1] &quot;svmRadial&quot;</code></pre>
-<p>Accuracy Report</p>
-<pre><code>## [1] &quot;Top 3 Algorithms&quot;</code></pre>
-<pre><code>## [1] rf        gbm       svmRadial
+<pre><code>##      Method AccuracyTrain AccuracyTest AccuracyValidation
+## 1        rf     1.0000000    0.9674599          0.9578590
+## 2     rpart     0.3867346    0.3851384          0.3875956
+## 3        nb     0.6497557    0.6197183          0.6285472
+## 4       lda     0.5229234    0.5128703          0.5238743
+## 5       gbm     0.8685934    0.8278290          0.8224299
+## 6 svmRadial     0.9073708    0.8875668          0.8858114</code></pre>
+<p>Top 3 Algorithms</p>
+<pre><code>## [1] rf        svmRadial gbm      
 ## Levels: gbm lda nb rf rpart svmRadial</code></pre>
 </div>
 <div id="top-3-algorithms-are-random-forest-svm-and-boosting" class="section level2">
@@ -154,8 +156,8 @@ img {
 <div id="final-steps-ensemble-model-based-on-glmnet-as-a-combiner" class="section level3">
 <h3>Final Steps: Ensemble model based on “glmnet” as a combiner</h3>
 <p>Accuracy on the Validation set:</p>
-<pre><code>##  Accuracy 
-## 0.7884452</code></pre>
+<pre><code>## Accuracy 
+## 0.957859</code></pre>
 </div>
 <div id="final-words" class="section level3">
 <h3>Final words:</h3>
