@@ -2,22 +2,22 @@
 title: "ML Project"
 author: "konstantin mingoulin"
 date: "April 23, 2016"
-output: pdf_document
+output: html_document
 ---
 
 ###Background: 
-How well the participants perform weight-lifting exercises.Six participnts performed a varity of exaercise. Partcipants were supervised by an experienced trainer.Five classes (A - "correct" and 4 other) were identified based on common mistakes.
+How well the participants perform weight-lifting exercises. Six participnts performed a variety of exercises. Partcipants were supervised by an experienced trainer. Five classes (A - "correct" and 4 other) were identified based on common mistakes.
 
 ###Objective: 
-Use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants and predict the correct the class of how they performed the exercise
+Use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants and predict the correct the class of how they performed the exercise.
 
 ###Data:
 * Data for the project consisted of 2 files:
-    + Main dataset (refered as training) will be used for training, validation and testing of the models
-    + Another dataset refered as "testing" and is used to evaluate the performance of the final model
+    + Main dataset (referred as training) will be used for training, validation and testing of the models
+    + Another dataset referred as "testing" and is used to evaluate the performance of the final model
     
 
-Distribution of classes (classe variable) in the main dataset:
+Distribution of classes ("classe"" variable) in the main dataset:
 
 ```{r,echo=FALSE,warning=FALSE,message=FALSE}
 library(caret)
@@ -49,7 +49,7 @@ set.seed(12345)
     + Further reduce the list of features to exclude non-informative columns like timestamps and user names
 
 List of features used in the model:
-```{r, echo=FALSE,echo=FALSE,warning=FALSE,message=FALSE}
+```{r, echo=FALSE,warning=FALSE,message=FALSE}
 #Check for NAs, compare test and train. Same features have NAs. Too many to correct for outliers. Exclude from the list of variables in the model
 EmptyVar<-as.data.frame(cbind(apply(mainData,2,function(x) {sum(is.na(x))}),apply(finalTesting,2,function(x) {sum(is.na(x))}),names(mainData)))
 names(EmptyVar)<-c("NATrain","NATest","FeatureName")
@@ -66,8 +66,8 @@ mainData<-data.frame(mainData[,ValidVars],classe=mainData$classe)
 finalTesting<-finalTesting[,ValidVars]
 ```
 
-###Partition the original Main dataset into training, validation and testing:
-```{r,echo=FALSE,echo=FALSE,warning=FALSE,message=FALSE}
+###Partition the original Main dataset into Training, Validation and Testing:
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
 #partition the original trianing into training validation and testing
 inBuild<-createDataPartition(y=mainData$classe, p=0.7, list=FALSE)
 
@@ -95,7 +95,7 @@ validationPC<-predict(preProc,validation)
 finalTestingPC<-predict(preProc,finalTesting)
 ```
 
-Principle component analysis was performed on Training dataset. The preprocessing model was then applied to both Tesing and Validation datasets. The main reasoning behind the application of PCA is feature count reduction. 
+Principle Component Analysis was performed on Training dataset. The pre-processing model was then applied to both Tesing and Validation datasets. The main reasoning behind the application of PCA is feature count reduction. 
 
 ###Model selection approach:
 * Create a vector of "methods" that were covered in the course lectures
@@ -106,14 +106,14 @@ Principle component analysis was performed on Training dataset. The preprocessin
     + create ensemble model using predictions for Testing dataset. Use "glmnet" as the combining algorithm
     
 List of models:
-```{r,echo=FALSE,echo=FALSE,warning=FALSE,message=FALSE}
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
 methods<-c("rf","rpart","nb","lda","gbm","svmRadial")
 print(methods)
 ```
 
 Accuracy Report:
 
-```{r,echo=FALSE,echo=FALSE,warning=FALSE,message=FALSE}
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
 #temp partition for code validaton
 #codeval<-createDataPartition(y=trainPC$classe, p=0.1, list=FALSE)
 #trainPC<-trainPC[codeval,]
@@ -165,7 +165,7 @@ top3Index<-order(-AccuracyListTest)[1:3]
 
 
 Top 3 Algorithms
-```{r,echo=FALSE,echo=FALSE,warning=FALSE,message=FALSE}
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
 print(AccuracyReport[top3Index,1])
 ```
 
@@ -177,7 +177,7 @@ print(AccuracyReport[top3Index,1])
 Accuracy on the Validation set:
     
 
-```{r,echo=FALSE,echo=FALSE,warning=FALSE,message=FALSE}
+```{r,echo=FALSE,warning=FALSE,message=FALSE}
 
 #PredDF and PredVDF contain estimates by method but need to mo move column index by one to alighn with models on the list
 combModFit<-train(classe~.,method="glmnet",data=PredDF[,c(1,top3Index+1)])
